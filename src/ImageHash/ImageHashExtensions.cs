@@ -15,10 +15,11 @@ namespace CoenM.ImageHash
         /// <summary>Calculate the hash of the image (stream) using the hashImplementation.</summary>
         /// <param name="hashImplementation">HashImplementation to calculate the hash.</param>
         /// <param name="stream">Stream should 'contain' raw image data.</param>
+        /// <param name="hashsize">Size of the resulting hash in bits.</param>
         /// <returns>hash value.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="hashImplementation"/> or <paramref name="stream"/> is <c>null</c>.</exception>
         /// <exception cref="SixLabors.ImageSharp.UnknownImageFormatException">Thrown when stream content cannot be loaded as an image.</exception>
-        public static byte[] Hash(this IImageHash hashImplementation, Stream stream)
+        public static byte[] Hash(this IImageHash hashImplementation, Stream stream, HashSizes hashsize = HashSizes.H64)
         {
             if (hashImplementation == null)
             {
@@ -31,7 +32,7 @@ namespace CoenM.ImageHash
             }
 
             using var image = Image.Load<Rgba32>(stream);
-            return hashImplementation.Hash(image);
+            return hashImplementation.Hash(image, hashsize);
         }
 
         /// <summary>Asynchronously calculate the hash of the image (stream) using the hashImplementation.</summary>

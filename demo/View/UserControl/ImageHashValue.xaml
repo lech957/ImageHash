@@ -13,6 +13,7 @@
   <Grid>
     <Grid.Resources>
       <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+            <converters:ByteArrayConverter x:Key="ByteArrayConverter" />
     </Grid.Resources>
 
     <Grid.RowDefinitions>
@@ -31,13 +32,13 @@
     <Image Margin="1" Grid.Row="0" Grid.ColumnSpan="2" Stretch="Uniform" Source="{Binding Path=Image}"  />
 
     <Label Margin="0 1 0 1" Grid.Row="1" Grid.Column="0">AverageHash</Label>
-    <Label Margin="0 1 0 1" Grid.Row="1" Grid.Column="1" Content="{Binding Path=AverageHash}"/>
+        <Label Margin="0 1 0 1" Grid.Row="1" Grid.Column="1" Content="{Binding Path=AverageHash, Converter={StaticResource ByteArrayConverter}}"/>
 
     <Label Margin="0 1 0 1" Grid.Row="2" Grid.Column="0">DifferenceHash</Label>
-    <Label Margin="0 1 0 1" Grid.Row="2" Grid.Column="1" Content="{Binding Path=DifferenceHash}"/>
+        <Label Margin="0 1 0 1" Grid.Row="2" Grid.Column="1" Content="{Binding Path=DifferenceHash, Converter={StaticResource ByteArrayConverter}}"/>
 
     <Label Margin="0 1 0 1" Grid.Row="3" Grid.Column="0">PerceptualHash</Label>
-    <Label Margin="0 1 0 1" Grid.Row="3" Grid.Column="1" Content="{Binding Path=PerceptualHash}"/>
+        <Label Margin="0 1 0 1" Grid.Row="3" Grid.Column="1" Content="{Binding Path=PerceptualHash, Converter={StaticResource ByteArrayConverter}}"/>
 
     <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
       <Button  Margin="2" Padding="2" ToolTip="Browse" Content="Browse" IsEnabled="{Binding Path=Busy, Converter={StaticResource InverseBooleanConverter}}">

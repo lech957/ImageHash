@@ -79,17 +79,23 @@ namespace Demo.ViewModel
             private set => Properties.Set(value);
         }
 
+        public string AverageHashString => BitConverter.ToString(AverageHash);
+
         public byte[] DifferenceHash
         {
             get => Properties.Get<byte[]>([]);
             private set => Properties.Set(value);
         }
 
+        public string DifferentialhashString => BitConverter.ToString(DifferenceHash);
+
         public byte[] PerceptualHash
         {
             get => Properties.Get<byte[]>([]);
             private set => Properties.Set(value);
         }
+
+        public string PerceptualhashString => BitConverter.ToString(PerceptualHash);
 
         public string FileName
         {

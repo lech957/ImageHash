@@ -24,7 +24,7 @@ namespace CoenM.ImageHash.HashAlgorithms
                 throw new ArgumentNullException(nameof(image));
             }
 
-            int width = GetWidthHeight(hashsize);
+            int width = this.GetWidthOfHashSize(hashsize);
             int height = width;
             int nr_pixels = width * height;
             ulong most_significant_bits_mask = 1UL << (nr_pixels - 1);
@@ -80,11 +80,6 @@ namespace CoenM.ImageHash.HashAlgorithms
                 });
 
             return hash;
-        }
-
-        private static int GetWidthHeight(HashSizes size)
-        {
-            return (int)size;
         }
     }
 }

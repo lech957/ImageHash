@@ -57,5 +57,22 @@ namespace CoenM.ImageHash
             using var image = await Image.LoadAsync<Rgba32>(stream, cancellationToken);
             return hashImplementation.Hash(image);
         }
+
+        /// <summary>
+        /// Calculates the standard width in pixels for a given HashSize.
+        /// </summary>
+        /// <param name="hashImplementation">HashImplementation to calculate the hash.</param>
+        /// <param name="hashsize">Size of the resulting hash in bits.</param>
+        /// <returns>Pixel width for the given hash size.</returns>
+        /// /// <exception cref="ArgumentNullException">Thrown when <paramref name="hashImplementation"/>  is <c>null</c>.</exception>
+        public static int GetWidthOfHashSize(this IImageHash hashImplementation, HashSizes hashsize)
+        {
+            if (hashImplementation == null)
+            {
+                throw new ArgumentNullException(nameof(hashImplementation));
+            }
+
+            return (int)hashsize;
+        }
     }
 }

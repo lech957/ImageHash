@@ -20,7 +20,7 @@ namespace CoenM.ImageHash.HashAlgorithms
         private const int HEIGHT = 8;
 
         /// <inheritdoc />
-        public byte[] Hash(Image<Rgba32> image)
+        public byte[] Hash(Image<Rgba32> image, HashSizes hashsize = HashSizes.H64)
         {
             if (image == null)
             {

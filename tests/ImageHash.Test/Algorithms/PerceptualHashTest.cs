@@ -16,14 +16,14 @@ namespace CoenM.ImageHash.Test.Algorithms
     {
         private readonly PerceptualHash _sut;
 
-        private readonly Dictionary<string, ulong> _expectedHashes = new Dictionary<string, ulong>
+        private readonly Dictionary<string, byte[]> _expectedHashes = new Dictionary<string, byte[]>
         {
-            { "Alyson_Hannigan_500x500_0.jpg", 17839858461443178030 },
-            { "Alyson_Hannigan_500x500_1.jpg", 17839823311430827566 },
-            { "Alyson_Hannigan_200x200_0.jpg", 17839858461443178030 },
-            { "Alyson_Hannigan_4x4_0.jpg", 17409736169497899465 },
-            { "github_1.jpg", 13719320793338945348 },
-            { "github_2.jpg", 13783795072850083657 },
+            { "Alyson_Hannigan_500x500_0.jpg", BitConverter.GetBytes(17839858461443178030) },
+            { "Alyson_Hannigan_500x500_1.jpg", BitConverter.GetBytes(17839823311430827566) },
+            { "Alyson_Hannigan_200x200_0.jpg", BitConverter.GetBytes(17839858461443178030) },
+            { "Alyson_Hannigan_4x4_0.jpg", BitConverter.GetBytes(17409736169497899465) },
+            { "github_1.jpg", BitConverter.GetBytes(13719320793338945348) },
+            { "github_2.jpg", BitConverter.GetBytes(13783795072850083657) },
         };
 
         public PerceptualHashTest()
@@ -38,10 +38,11 @@ namespace CoenM.ImageHash.Test.Algorithms
         [InlineData("Alyson_Hannigan_4x4_0.jpg", 17409736169531453642)]
         [InlineData("github_1.jpg", 13719320793338945348)]
         [InlineData("github_2.jpg", 13783795072850083657)]
-        public async Task HashImagesTest(string filename, ulong expectedHash)
+        public async Task HashImagesTest(string filename, ulong expected)
         {
+            byte[] expectedHash = BitConverter.GetBytes(expected);
             // arrange
-            ulong result;
+            byte[] result;
 
             // act
             using (Stream stream = await TestData.GetByName(filename).AsStream())
@@ -50,7 +51,7 @@ namespace CoenM.ImageHash.Test.Algorithms
             }
 
             // assert
-            result.Should().Be(expectedHash);
+            result.Should().BeEquivalentTo(expectedHash);
         }
 
         [Fact]

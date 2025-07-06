@@ -38,10 +38,11 @@ namespace CoenM.ImageHash.Test.Algorithms
         [InlineData("Alyson_Hannigan_4x4_0.jpg", 2242545344976519395)]
         [InlineData("github_1.jpg", 3609409886373023246)]
         [InlineData("github_2.jpg", 3604624846665550860)]
-        public async Task HashImagesTest(string filename, ulong expectedHash)
+        public async Task HashImagesTest(string filename, ulong expected)
         {
+            byte[] expectedHash = BitConverter.GetBytes(expected);
             // arrange
-            ulong result;
+            byte[] result;
 
             // act
             using (Stream stream = await TestData.GetByName(filename).AsStream())
@@ -50,7 +51,7 @@ namespace CoenM.ImageHash.Test.Algorithms
             }
 
             // assert
-            result.Should().Be(expectedHash);
+            result.Should().BeEquivalentTo(expectedHash);
         }
 
         [Fact]

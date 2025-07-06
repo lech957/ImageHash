@@ -1,7 +1,7 @@
-﻿namespace Demo.Model
+namespace Demo.Model
 {
     public interface IImageHashSimilarityCalculator
     {
-        double Calculate(ulong imageHash1, ulong imageHash2);
+        double Calculate(byte[] imageHash1, byte[] imageHash2);
     }
 }

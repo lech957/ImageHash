@@ -18,7 +18,7 @@ namespace CoenM.ImageHash
         /// <returns>hash value.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="hashImplementation"/> or <paramref name="stream"/> is <c>null</c>.</exception>
         /// <exception cref="SixLabors.ImageSharp.UnknownImageFormatException">Thrown when stream content cannot be loaded as an image.</exception>
-        public static ulong Hash(this IImageHash hashImplementation, Stream stream)
+        public static byte[] Hash(this IImageHash hashImplementation, Stream stream)
         {
             if (hashImplementation == null)
             {
@@ -41,7 +41,7 @@ namespace CoenM.ImageHash
         /// <returns>hash value.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="hashImplementation"/> or <paramref name="stream"/> is <c>null</c>.</exception>
         /// <exception cref="SixLabors.ImageSharp.UnknownImageFormatException">Thrown when stream content cannot be loaded as an image.</exception>
-        public static async Task<ulong> HashAsync(this IImageHash hashImplementation, Stream stream, CancellationToken cancellationToken)
+        public static async Task<byte[]> HashAsync(this IImageHash hashImplementation, Stream stream, CancellationToken cancellationToken)
         {
             if (hashImplementation == null)
             {

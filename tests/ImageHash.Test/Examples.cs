@@ -21,7 +21,7 @@ namespace CoenM.ImageHash.Test
             string filename = "your filename";
             using var stream = File.OpenRead(filename);
 
-            ulong imageHash = hashAlgorithm.Hash(stream);
+            byte[] imageHash = hashAlgorithm.Hash(stream);
 
             #endregion
         }
@@ -35,8 +35,8 @@ namespace CoenM.ImageHash.Test
             #region CalculateSimilarity
 
             // calculate the two image hashes
-            ulong hash1 = hashAlgorithm.Hash(imageStream1);
-            ulong hash2 = hashAlgorithm.Hash(imageStream2);
+            byte[] hash1 = hashAlgorithm.Hash(imageStream1);
+            byte[] hash2 = hashAlgorithm.Hash(imageStream2);
 
             double percentageImageSimilarity = CompareHash.Similarity(hash1, hash2);
 

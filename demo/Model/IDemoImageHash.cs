@@ -1,11 +1,11 @@
-﻿namespace Demo.Model
+namespace Demo.Model
 {
     public interface IDemoImageHash
     {
-        ulong CalculateAverageHash(string filename);
+        byte[] CalculateAverageHash(string filename);
 
-        ulong CalculateDifferenceHash(string filename);
+        byte[] CalculateDifferenceHash(string filename);
 
-        ulong CalculatePerceptualHash(string filename);
+        byte[] CalculatePerceptualHash(string filename);
     }
 }

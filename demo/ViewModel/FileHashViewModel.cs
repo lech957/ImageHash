@@ -73,21 +73,21 @@ namespace Demo.ViewModel
             set => Properties.Set(value);
         }
 
-        public ulong AverageHash
+        public byte[] AverageHash
         {
-            get => Properties.Get<ulong>(0);
+            get => Properties.Get<byte[]>([]);
             private set => Properties.Set(value);
         }
 
-        public ulong DifferenceHash
+        public byte[] DifferenceHash
         {
-            get => Properties.Get<ulong>(0);
+            get => Properties.Get<byte[]>([]);
             private set => Properties.Set(value);
         }
 
-        public ulong PerceptualHash
+        public byte[] PerceptualHash
         {
-            get => Properties.Get<ulong>(0);
+            get => Properties.Get<byte[]>([]);
             private set => Properties.Set(value);
         }
 
@@ -118,9 +118,9 @@ namespace Demo.ViewModel
         {
             Loaded = false;
             Image = new BitmapImage();
-            AverageHash = 0;
-            DifferenceHash = 0;
-            PerceptualHash = 0;
+            AverageHash = BitConverter.GetBytes(0UL);
+            DifferenceHash = BitConverter.GetBytes(0UL);
+            PerceptualHash = BitConverter.GetBytes(0UL);
             FileName = string.Empty;
         }
     }

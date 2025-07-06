@@ -22,7 +22,7 @@ namespace CoenM.ImageHash.HashAlgorithms
         private const ulong MOST_SIGNIFICANT_BIT_MASK = 1UL << (NR_PIXELS - 1);
 
         /// <inheritdoc />
-        public ulong Hash(Image<Rgba32> image)
+        public byte[] Hash(Image<Rgba32> image)
         {
             if (image == null)
             {
@@ -72,7 +72,7 @@ namespace CoenM.ImageHash.HashAlgorithms
                     }
                 });
 
-            return hash;
+            return BitConverter.GetBytes(hash);
         }
     }
 }

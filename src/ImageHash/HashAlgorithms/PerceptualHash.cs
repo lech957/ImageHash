@@ -21,7 +21,7 @@ namespace CoenM.ImageHash.HashAlgorithms
         private static readonly List<Vector<double>>[] _dctCoeffsSimd = GenerateDctCoeffsSimd();
 
         /// <inheritdoc />
-        public ulong Hash(Image<Rgba32> image)
+        public byte[] Hash(Image<Rgba32> image)
         {
             if (image == null)
             {
@@ -86,7 +86,7 @@ namespace CoenM.ImageHash.HashAlgorithms
                 mask >>= 1;
             }
 
-            return hash;
+            return BitConverter.GetBytes(hash);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

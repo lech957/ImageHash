@@ -52,7 +52,7 @@ namespace CoenM.ImageHash
         /// <returns>The similarity percentage.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="hash1"/> or <paramref name="hash2"/> is <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="hash1"/> or <paramref name="hash2"/> has a length other than <c>8</c>.</exception>
-        public static double Similarity(byte[] hash1, byte[] hash2)
+        public static double Similarity_ULONG_Hash(byte[] hash1, byte[] hash2)
         {
             if (hash1 == null)
             {
@@ -77,6 +77,57 @@ namespace CoenM.ImageHash
             var h1 = BitConverter.ToUInt64(hash1, 0);
             var h2 = BitConverter.ToUInt64(hash2, 0);
             return Similarity(h1, h2);
+        }
+
+        /// <summary>
+        /// Similarity calculation for hashes of dynamic size.
+        /// </summary>
+        /// <param name="hash1">The first hash. Cannot be null and must have a length of 8.</param>
+        /// <param name="hash2">The second hash. Cannot be null and must have a length of 8.</param>
+        /// <returns>The similarity percentage.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="hash1"/> or <paramref name="hash2"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="hash1"/> and <paramref name="hash2"/> have different lengths or a length of zero.</exception>
+        public static double Similarity(byte[] hash1, byte[] hash2)
+        {
+            if (hash1 == null)
+            {
+                throw new ArgumentNullException(nameof(hash1));
+            }
+
+            if (hash2 == null)
+            {
+                throw new ArgumentNullException(nameof(hash2));
+            }
+
+            if (hash1.Length != hash2.Length)
+            {
+                throw new ArgumentOutOfRangeException($"{nameof(hash1)} has different length than {nameof(hash2)}");
+            }
+
+            if (hash1.Length == 0)
+            {
+                throw new ArgumentOutOfRangeException($"{nameof(hash1)} and {nameof(hash2)} have length of zero");
+            }
+
+            int diff = 0;
+
+            for (int i = 0; i < hash1.Length; i++)
+            {
+                byte b1 = hash1[i];
+                byte b2 = hash2[i];
+                int d = b1 ^ b2;
+                if (d != 0)
+                {
+                    for (int n = 0; n < 8; n++)
+                    {
+                        diff += (d >> n) & 1;
+                    }
+                }
+            }
+
+            var bitlength = hash1.Length * 8;
+            var result = ((bitlength - diff) * 100.0) / bitlength;
+            return result;
         }
 
         /// <summary>Counts bits Utility function for similarity.</summary>

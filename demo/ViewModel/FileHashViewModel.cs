@@ -31,6 +31,7 @@ namespace Demo.ViewModel
                         AverageHash = await Task.Run(() => imageHash.CalculateAverageHash(filename));
                         DifferenceHash = await Task.Run(() => imageHash.CalculateDifferenceHash(filename));
                         PerceptualHash = await Task.Run(() => imageHash.CalculatePerceptualHash(filename));
+                        ExtendedAverageHash = await Task.Run(() => imageHash.CalculateExtendedAverageHash(filename));
                         Loaded = true;
                     }
                     finally
@@ -79,6 +80,12 @@ namespace Demo.ViewModel
             private set => Properties.Set(value);
         }
 
+        public byte[] ExtendedAverageHash
+        {
+            get => Properties.Get<byte[]>([]);
+            private set => Properties.Set(value);
+        }
+
         public byte[] DifferenceHash
         {
             get => Properties.Get<byte[]>([]);
@@ -121,6 +128,7 @@ namespace Demo.ViewModel
             AverageHash = BitConverter.GetBytes(0UL);
             DifferenceHash = BitConverter.GetBytes(0UL);
             PerceptualHash = BitConverter.GetBytes(0UL);
+            ExtendedAverageHash = BitConverter.GetBytes(0UL);
             FileName = string.Empty;
         }
     }

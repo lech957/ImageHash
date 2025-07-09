@@ -42,6 +42,10 @@ namespace Demo.ViewModel
                         var p1 = fileA.PerceptualHash;
                         var p2 = fileB.PerceptualHash;
                         PerceptualHash = await Task.Run(() => calculator.Calculate(p1, p2));
+
+                        var e1 = fileA.ExtendedAverageHash;
+                        var e2 = fileB.ExtendedAverageHash;
+                        ExtendedAverageHash = await Task.Run(() => calculator.Calculate(p1, p2));
                     }
                     finally
                     {
@@ -62,6 +66,12 @@ namespace Demo.ViewModel
         }
 
         public double AverageHash
+        {
+            get => Properties.Get<double>(0);
+            private set => Properties.Set(value);
+        }
+
+        public double ExtendedAverageHash
         {
             get => Properties.Get<double>(0);
             private set => Properties.Set(value);

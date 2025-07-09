@@ -22,6 +22,7 @@
       <RowDefinition Height="auto"></RowDefinition>
       <RowDefinition Height="auto"></RowDefinition>
       <RowDefinition Height="auto"></RowDefinition>
+      <RowDefinition Height="auto"></RowDefinition>
     </Grid.RowDefinitions>
 
     <Grid.ColumnDefinitions>
@@ -33,14 +34,16 @@
 
     <Label Margin="0 1 0 1" Grid.Row="1" Grid.Column="0">AverageHash</Label>
         <Label Margin="0 1 0 1" Grid.Row="1" Grid.Column="1" Content="{Binding Path=AverageHash, Converter={StaticResource ByteArrayConverter}}"/>
+   <Label Margin="0 1 0 1" Grid.Row="2" Grid.Column="0">ExtendedAverageHash</Label>
+    <Label Margin="0 1 0 1" Grid.Row="2" Grid.Column="1" Content="{Binding Path=ExtendedAverageHash, Converter={StaticResource ByteArrayConverter}}"/>
+      
+    <Label Margin="0 1 0 1" Grid.Row="3" Grid.Column="0">DifferenceHash</Label>
+        <Label Margin="0 1 0 1" Grid.Row="3" Grid.Column="1" Content="{Binding Path=DifferenceHash, Converter={StaticResource ByteArrayConverter}}"/>
 
-    <Label Margin="0 1 0 1" Grid.Row="2" Grid.Column="0">DifferenceHash</Label>
-        <Label Margin="0 1 0 1" Grid.Row="2" Grid.Column="1" Content="{Binding Path=DifferenceHash, Converter={StaticResource ByteArrayConverter}}"/>
+    <Label Margin="0 1 0 1" Grid.Row="4" Grid.Column="0">PerceptualHash</Label>
+        <Label Margin="0 1 0 1" Grid.Row="4" Grid.Column="1" Content="{Binding Path=PerceptualHash, Converter={StaticResource ByteArrayConverter}}"/>
 
-    <Label Margin="0 1 0 1" Grid.Row="3" Grid.Column="0">PerceptualHash</Label>
-        <Label Margin="0 1 0 1" Grid.Row="3" Grid.Column="1" Content="{Binding Path=PerceptualHash, Converter={StaticResource ByteArrayConverter}}"/>
-
-    <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+    <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
       <Button  Margin="2" Padding="2" ToolTip="Browse" Content="Browse" IsEnabled="{Binding Path=Busy, Converter={StaticResource InverseBooleanConverter}}">
         <b:Interaction.Behaviors>
           <behaviors:OpenFileDialogBehavior FileName="{Binding Path=FileName, Mode=TwoWay}"/>

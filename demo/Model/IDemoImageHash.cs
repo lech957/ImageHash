@@ -4,6 +4,8 @@ namespace Demo.Model
     {
         byte[] CalculateAverageHash(string filename);
 
+        byte[] CalculateExtendedAverageHash(string filename);
+
         byte[] CalculateDifferenceHash(string filename);
 
         byte[] CalculatePerceptualHash(string filename);
